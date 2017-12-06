@@ -1,5 +1,6 @@
 # Frank Anastasia 
 # Web scrapping tool using beautiful soup 
+# As seen on "Introduction to Web Scraping" by Data Science Dojo
 
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
