@@ -1,4 +1,5 @@
 # Frank Anastasia 
+# We're about to get cooking
 
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
