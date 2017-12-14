@@ -14,3 +14,11 @@ uClient.close()
 
 # Does html parsing 
 page_soup = soup(page_html, "html.parser")
+
+# To Do 
+# Click view all songs 
+# Grab song titles for test run 
+# Loop through every song
+# + + Click to visit lyric page 
+# + + Grab words in song 
+# + + Place into map with associated key (num times entered)
