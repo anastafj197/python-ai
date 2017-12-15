@@ -21,10 +21,16 @@ uClient.close()
 # Does html parsing 
 page_soup = soup(page_html, "html.parser")
 
-print(page_soup.p)
+titles = page_soup.find('ul')
+
+# Wow python is handy 
+print(titles.text)
+
+num_songs = page_soup.findAll('li')
+print(len(num_songs))
 
 # To Do 
-# Extract what I need 
+# Extract what I need ****
 # Grab song titles for test run 
 # ++ Where should I put them 
 # Loop through every song
