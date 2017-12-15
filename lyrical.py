@@ -4,6 +4,7 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
+import webbrowser
 # from selenium import webdriver 
 
 # New Website 
@@ -26,14 +27,33 @@ titles = page_soup.find('ul')
 # Wow python is handy 
 print(titles.text)
 
-num_songs = page_soup.findAll('li')
-print(len(num_songs))
+# Grabs all the links on the page 
+# The 1st three are not songs still 
+# Working to fix that 
+songs = page_soup.find_all('a')
+
+
+# A nice place for all my links 
+#links = []
+#for song in songs:
+#	link = song.attrs['href']
+#	links.append(link)
+
+#print(links)
+
+
+# Print specific item in list 
+# Prints the link to the lyrics
+print(songs[30].text)
+print(songs[30].attrs['href'])
+
+print()
+
+# number of song titles on the page 
+print(len(songs) - 3)
 
 # To Do 
-# Extract what I need ****
-# Grab song titles for test run 
-# ++ Where should I put them 
-# Loop through every song
+# Grab the right set of links (only links from the <ul>)
 # ++ Click to visit lyric page 
 # ++ Grab words in song 
 # ++ Place into map with associated key (num times entered)
