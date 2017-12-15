@@ -4,22 +4,30 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
-from selenium import webdriver 
+# from selenium import webdriver 
 
-my_url = 'https://lyrics.az/grateful-dead/allsongs.html'
+# New Website 
+my_url = 'https://www.cs.cmu.edu/~mleone/dead-lyrics.html'
 
-# opening connection, grabbing the page 
+# Opening connection, grabbing the page 
 uClient = uReq(my_url)
+
+# Offload content to a variable
 page_html = uClient.read()
+
+# Close client
 uClient.close()
 
 # Does html parsing 
 page_soup = soup(page_html, "html.parser")
 
+print(page_soup.p)
+
 # To Do 
-# Click view all songs 
+# Extract what I need 
 # Grab song titles for test run 
+# ++ Where should I put them 
 # Loop through every song
-# + + Click to visit lyric page 
-# + + Grab words in song 
-# + + Place into map with associated key (num times entered)
+# ++ Click to visit lyric page 
+# ++ Grab words in song 
+# ++ Place into map with associated key (num times entered)
