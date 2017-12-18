@@ -52,6 +52,12 @@ print()
 # number of song titles on the page 
 print(len(songs) - 3)
 
+# for every href link 
+#   travel to it 
+#   scrape the lyrics from page 
+#   store in database 
+#   return to previus page 
+
 # To Do 
 # Grab the right set of links (only links from the <ul>)
 # ++ Click to visit lyric page 
