@@ -60,6 +60,13 @@ print(len(songs) - 3)
 
 # To Do 
 # Grab the right set of links (only links from the <ul>)
-# ++ Click to visit lyric page 
 # ++ Grab words in song 
 # ++ Place into map with associated key (num times entered)
+
+# Begin language recognition 
+# Create a new data set of words (no repeats)
+# Classify set (sentiment analysis / mood evocation)
+# Syl·la·ble
+# Catagorize words (parts of speech)\
+
+
