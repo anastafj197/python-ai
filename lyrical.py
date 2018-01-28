@@ -41,10 +41,17 @@ print()
 #for url in soup.find_all('a'):
 #	print(url.get('href'))
 
-with open('100,000_Tons_of_Steel.txt','r') as f:
+# Need to have the text file saved 
+with open('Fire_On_The_Mountain.txt','r') as f:
     for line in f:
         for word in line.split():
            print(word) 
+	
+# Gives each line as the song is written 
+# To do **count sylabols in each line**
+with open('Fire_On_The_Mountain.txt','r') as f:
+    for line in f:
+    	print(line)
 
 		
 
