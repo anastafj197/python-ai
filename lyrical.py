@@ -32,29 +32,56 @@ page_soup = soup(page_html, "html.parser")
 
 titles = page_soup.find('ul')
 titles_text = titles.text
-# Wow python is handy 
+
+# Start of the sylabol counter
+print("* sylabble counter *")
+
+def sylabble_count(word):
+	word = word.lower()
+	count = 0 
+	vowels = "ayeiou"
+	if word in vowels:
+		count += 1
+	for index in range(1, len(word)):
+		if word[index] in vowels and word[index - 1] not in vowels:
+			count += 1 
+			if word.endswith("e"):
+				count -= 1
+	if count == 0:
+		count += 1 
+	return count 
+
+# This prints the name with the url 
+# Along with all the rest of the li in the <ul> 
 print(titles)
 print()
+
+# This only prints the names of all the songs
 print(titles_text)
 print()
 
-#for url in soup.find_all('a'):
-#	print(url.get('href'))
 
-# Need to have the text file saved 
+
+# Gives each word of a specific saved text file on a new line 
 with open('Fire_On_The_Mountain.txt','r') as f:
     for line in f:
         for word in line.split():
            print(word) 
-	
+
+print()
+
 # Gives each line as the song is written 
 # To do **count sylabols in each line**
 with open('Fire_On_The_Mountain.txt','r') as f:
     for line in f:
     	print(line)
 
-		
-
+# grab a specific line in the file 
+f = open('Fire_On_The_Mountain.txt')
+lines = f.readlines()
+print(lines[3])
+count = sylabble_count(lines[3])
+print(count)
 #uniTitles = str(titles)
 
 #for ul in uniTitles:
@@ -96,12 +123,17 @@ print()
 # ++ Place into map with associated key (num times entered)
 
 # Each line 
-# ++ Count sylabols (sylabol counter)
+# ++ Count sylabbles (sylabble counter)
 # ++ Ryhme end of line (Ryhme anyalsis)
 # ++ Generate a stansa 
+
+
+print() 
+
+
+#print(sylabble_count('fire')) 
 
 # Add meaning 
 # ++ sentiment anylisis 
 # ++ Tie in a dictionary to decide parts of speach 
 # ++ Anyalse for similar patterns within each song (noun, noun, adj, verb)
-
