@@ -33,10 +33,10 @@ page_soup = soup(page_html, "html.parser")
 titles = page_soup.find('ul')
 titles_text = titles.text
 
-# Start of the sylabol counter
-print("* sylabble counter *")
+# Start of the syllable counter
+print("* syllable counter *")
 
-def sylabble_count(word):
+def syllable_count(word):
 	word = word.lower()
 	count = 0 
 	vowels = "ayeiou"
@@ -80,7 +80,7 @@ with open('Fire_On_The_Mountain.txt','r') as f:
 f = open('Fire_On_The_Mountain.txt')
 lines = f.readlines()
 print(lines[3])
-count = sylabble_count(lines[3])
+count = syllable_count(lines[3])
 print(count)
 #uniTitles = str(titles)
 
@@ -123,7 +123,7 @@ print()
 # ++ Place into map with associated key (num times entered)
 
 # Each line 
-# ++ Count sylabbles (sylabble counter)
+# ++ Count syllable 
 # ++ Ryhme end of line (Ryhme anyalsis)
 # ++ Generate a stansa 
 
@@ -131,7 +131,7 @@ print()
 print() 
 
 
-#print(sylabble_count('fire')) 
+#print(syllable_count('fire')) 
 
 # Add meaning 
 # ++ sentiment anylisis 
