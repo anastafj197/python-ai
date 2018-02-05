@@ -6,6 +6,12 @@ import urllib3
 import webbrowser 
 import urllib.request 
 
+# Use for the rhymes 
+import pronouncing
+
+# Use for parts of speech
+from textblob import TextBlob
+
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
@@ -53,11 +59,11 @@ def syllable_count(word):
 
 # This prints the name with the url 
 # Along with all the rest of the li in the <ul> 
-print(titles)
+print(titles) 
 print()
 
 # This only prints the names of all the songs
-print(titles_text)
+print(titles_text) 
 print()
 
 
@@ -71,17 +77,27 @@ with open('Fire_On_The_Mountain.txt','r') as f:
 print()
 
 # Gives each line as the song is written 
-# To do **count sylabols in each line**
+# To do **count syllables in each line and print**
 with open('Fire_On_The_Mountain.txt','r') as f:
     for line in f:
-    	print(line)
+    	count = syllable_count(line)
+    	print("{} {}".format(line, count))
+    	# print(line)
 
 # grab a specific line in the file 
 f = open('Fire_On_The_Mountain.txt')
 lines = f.readlines()
-print(lines[3])
-count = syllable_count(lines[3])
+print(lines[25])
+count = syllable_count(lines[25])
 print(count)
+
+text = lines[24]
+blob = TextBlob(text)
+print(blob.tags) 
+
+print()
+print()
+print(pronouncing.rhymes("tree"))
 #uniTitles = str(titles)
 
 #for ul in uniTitles:
