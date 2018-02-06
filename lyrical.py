@@ -63,8 +63,8 @@ def syllable_count(word):
 # gibberish_stanza follows a basic POS pattern and attempts to replicate 
 # Parameters: Accepts 2 random words to serve as end of line rhymes 
 # Returns: A four line stanza of gibberish 
-def gibberish_stanza(word, word):
-
+def gibberish_stanza(word, word2):
+	return 0
 
 # This prints the name with the url 
 # Along with all the rest of the li in the <ul> 
@@ -90,18 +90,25 @@ print()
 with open('Fire_On_The_Mountain.txt','r') as f:
     for line in f:
     	count = syllable_count(line)
-    	print("{} {}".format(line, count))
+    	print(line, count)
     	# print(line)
 
 # grab a specific line in the file 
 f = open('Fire_On_The_Mountain.txt')
 lines = f.readlines()
+
+print()
+#specific line syl count 
 print(lines[25])
 count = syllable_count(lines[25])
 print(count)
 
-text = lines[24]
+text = lines[12]
 blob = TextBlob(text)
+
+print()
+print("* Parts of speech Tagging *")
+print()
 
 # blob.tags is used to find the POS a word is within a line 
 print(blob.tags) 
@@ -109,8 +116,11 @@ print(blob.tags)
 print()
 print()
 
-# pronouncing.rhymes("X") returns a list of words that ryhme with X
-print(pronouncing.rhymes("tree"))
+# pronouncing.rhymes(word) returns a list of words that ryhme with word
+word = "Dragon"
+print("* Printing words that ryhme with", word, "*")
+print()
+print(pronouncing.rhymes(word))
 
 
 # Grabs all the links on the page 
