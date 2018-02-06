@@ -42,6 +42,9 @@ titles_text = titles.text
 # Start of the syllable counter
 print("* syllable counter *")
 
+# syllable_count uses vowels to determine syllables 
+# Parameters: Accepts a word or words 
+# Returns: A count of all the syllables 
 def syllable_count(word):
 	word = word.lower()
 	count = 0 
@@ -57,16 +60,22 @@ def syllable_count(word):
 		count += 1 
 	return count 
 
+# gibberish_stanza follows a basic POS pattern and attempts to replicate 
+# Parameters: Accepts 2 random words to serve as end of line rhymes 
+# Returns: A four line stanza of gibberish 
+def gibberish_stanza(word, word):
+
+
 # This prints the name with the url 
 # Along with all the rest of the li in the <ul> 
-print(titles) 
+print(titles)
+
 print()
 
 # This only prints the names of all the songs
 print(titles_text) 
+
 print()
-
-
 
 # Gives each word of a specific saved text file on a new line 
 with open('Fire_On_The_Mountain.txt','r') as f:
@@ -93,17 +102,16 @@ print(count)
 
 text = lines[24]
 blob = TextBlob(text)
+
+# blob.tags is used to find the POS a word is within a line 
 print(blob.tags) 
 
 print()
 print()
-print(pronouncing.rhymes("tree"))
-#uniTitles = str(titles)
 
-#for ul in uniTitles:
-#	for li in ul:
-#		a = li.find('a')
-#		print(a)
+# pronouncing.rhymes("X") returns a list of words that ryhme with X
+print(pronouncing.rhymes("tree"))
+
 
 # Grabs all the links on the page 
 # The 1st three are not songs still 
@@ -113,8 +121,8 @@ print(pronouncing.rhymes("tree"))
 #print(songs.text)
 
 # A nice place for all my links 
-#links = []
-#for song in songs:
+# links = []
+# for song in songs:
 #	link = song.attrs['href']
 #	links.append(link)
 
@@ -129,7 +137,7 @@ print(pronouncing.rhymes("tree"))
 print()
 
 # number of song titles on the page 
-#print(len(titles))
+# print(len(titles))
 
 # To Do 
 
@@ -143,9 +151,7 @@ print()
 # ++ Ryhme end of line (Ryhme anyalsis)
 # ++ Generate a stansa 
 
-
 print() 
-
 
 #print(syllable_count('fire')) 
 
