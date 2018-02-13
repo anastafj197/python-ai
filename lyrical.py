@@ -2,6 +2,7 @@
 # We're about to get cooking
 
 import re 
+import random 
 import urllib3
 import webbrowser 
 import urllib.request 
@@ -85,6 +86,39 @@ with open('Fire_On_The_Mountain.txt','r') as f:
 
 print()
 
+# Puts all the words into a list 
+with open('Fire_On_The_Mountain.txt','r') as f:
+    unique_words = set(f.read().split())
+
+# converts set into a list
+unique_words = list(unique_words) 
+
+print()
+print('* length of the list of all the words in the song *')
+print()
+song_len = len(unique_words)
+print(song_len)
+print()
+print(unique_words)
+print()
+
+# Grab a random word from the unique set of Fire on the Mountain 
+print('* Grabbing a random unique word from Fire on the Mountain *')
+
+print() 
+
+# Takes 1 random number between 1 and the song_len
+for x in range(1):
+	rand = random.randint(1, song_len)
+
+print('* random position is number', rand, 'in the list *')
+
+first_ryhme = unique_words[rand]  
+
+print()
+print(first_ryhme)
+print()
+print()
 # Gives each line as the song is written 
 # To do **count syllables in each line and print**
 with open('Fire_On_The_Mountain.txt','r') as f:
@@ -98,10 +132,10 @@ f = open('Fire_On_The_Mountain.txt')
 lines = f.readlines()
 
 print()
-#specific line syl count 
-print(lines[25])
-count = syllable_count(lines[25])
-print(count)
+# specific line syl count 
+#print(lines[25])
+#count = syllable_count(lines[25])
+#print(count)
 
 text = lines[12]
 blob = TextBlob(text)
@@ -117,7 +151,7 @@ print()
 print()
 
 # pronouncing.rhymes(word) returns a list of words that ryhme with word
-word = "Dragon"
+word = "frank"
 print("* Printing words that ryhme with", word, "*")
 print()
 print(pronouncing.rhymes(word))
