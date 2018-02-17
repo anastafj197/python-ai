@@ -86,12 +86,13 @@ with open('Fire_On_The_Mountain.txt','r') as f:
 
 print()
 
-# Puts all the words into a list 
-with open('Fire_On_The_Mountain.txt','r') as f:
-    unique_words = set(f.read().split())
-
-# converts set into a list
-unique_words = list(unique_words) 
+file = open('Fire_On_The_Mountain.txt', 'r')
+# .lower() returns a version with all upper case characters replaced with lower case characters.
+text = file.read().lower()
+file.close()
+# replaces anything that is not a lowercase letter, a space, or an apostrophe with a space:
+text = re.sub('[^a-z\ \']+', " ", text)
+unique_words = list(text.split())
 
 print()
 print('* length of the list of all the words in the song *')
@@ -110,13 +111,17 @@ print()
 # Takes 1 random number between 1 and the song_len
 for x in range(1):
 	rand = random.randint(1, song_len)
+	rand2 = random.randint(1, song_len)
 
 print('* random position is number', rand, 'in the list *')
 
-first_ryhme = unique_words[rand]  
+first_ryhme = unique_words[rand]
+second_ryhme = unique_words[rand2]  
 
 print()
-print(first_ryhme)
+print(first_ryhme, "is the first ryhme")
+print()
+print(second_ryhme, "is the second ryhme")
 print()
 print()
 # Gives each line as the song is written 
@@ -150,11 +155,11 @@ print(blob.tags)
 print()
 print()
 
-# pronouncing.rhymes(word) returns a list of words that ryhme with word
-word = "frank"
-print("* Printing words that ryhme with", word, "*")
+# pronouncing.rhymes(first_ryhme) returns a list of words that ryhme with first_ryhme
+print("* Printing words that ryhme with", first_ryhme, "*")
 print()
-print(pronouncing.rhymes(word))
+ryhme_list = pronouncing.rhymes(first_ryhme)
+print(ryhme_list)
 
 
 # Grabs all the links on the page 
