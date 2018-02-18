@@ -13,6 +13,8 @@ import pronouncing
 # Use for parts of speech
 from textblob import TextBlob
 
+# Use for synonyms 
+from PyDictionary import PyDictionary
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
@@ -21,6 +23,9 @@ from bs4 import BeautifulSoup as soup
 #import pynput 
 
 #from pynput.mouse import Button, Controller
+
+# creating a dictionary instance which can take words as arguments
+dictionary = PyDictionary()
 
 # New Website 
 my_url = 'https://www.cs.cmu.edu/~mleone/dead-lyrics.html'
@@ -35,7 +40,7 @@ page_html = uClient.read()
 uClient.close()
 
 # Does html parsing 
-page_soup = soup(page_html, "html.parser")
+page_soup = soup(page_html, "lxml")
 
 titles = page_soup.find('ul')
 titles_text = titles.text
@@ -160,7 +165,13 @@ print("* Printing words that ryhme with", first_ryhme, "*")
 print()
 ryhme_list = pronouncing.rhymes(first_ryhme)
 print(ryhme_list)
+print()
+print("* Generating Synonyms *")
+print()
+print()
 
+synonym_list = dictionary.synonym(first_ryhme) 
+print(synonym_list)
 
 # Grabs all the links on the page 
 # The 1st three are not songs still 
