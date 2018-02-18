@@ -166,73 +166,39 @@ print()
 # pronouncing.rhymes(first_ryhme) returns a list of words that ryhme with first_ryhme
 print("* Printing words that ryhme with", first_ryhme, "*")
 print()
-ryhme_list = pronouncing.rhymes(first_ryhme)
-print(ryhme_list)
+ryhme_list_1 = pronouncing.rhymes(first_ryhme)
+print(ryhme_list_1)
+print()
+print()
+print("* Printing words that ryhme with", second_ryhme, "*")
+print()
+ryhme_list_2 = pronouncing.rhymes(second_ryhme)
+print(ryhme_list_2)
 
 # Picking a random position in ryhme_list
 # Which will ryhme with first_ryhme
-ryhme_list_len = len(ryhme_list)
+ryhme_list_len_1 = len(ryhme_list_1)
+ryhme_list_len_2 = len(ryhme_list_2)
 
 for x in range(1):
-	rand_ryhme = random.randint(1, ryhme_list_len - 1)
+	rand_ryhme_1 = random.randint(1, ryhme_list_len_1 - 1)
+	rand_ryhme_2 = random.randint(1, ryhme_list_len_2 - 1)
 
-first_ryhmer = ryhme_list[rand_ryhme] 
-print()
-print("* Selected ryhmer *")
-print()
-print(first_ryhmer)
+first_ryhmer = ryhme_list_1[rand_ryhme_1] 
+second_ryhmer = ryhme_list_2[rand_ryhme_2]
 
+print()
+print("* Selected ryhmers *")
+print()
+print("1", first_ryhmer)
+print("2", second_ryhmer)
 print()
 print("* Generating words synonymous to", first_ryhme, "*")
 print()
 print()
 
 synonym_list = dictionary.synonym(first_ryhme) 
+
 print(synonym_list)
-
-# Grabs all the links on the page 
-# The 1st three are not songs still 
-# Working to fix that 
-
-#songs = page_soup.find_all('a')
-#print(songs.text)
-
-# A nice place for all my links 
-# links = []
-# for song in songs:
-#	link = song.attrs['href']
-#	links.append(link)
-
-#print(links)
-
-
-# Print specific item in list 
-# Prints the link to the lyrics
-#print(songs[30].text)
-#print(songs[30].attrs['href'])
-
 print()
-
-# number of song titles on the page 
-# print(len(titles))
-
-# To Do 
-
-# Entire song 
-# ++ Click to visit lyric page 
-# ++ Grab words in song 
-# ++ Place into map with associated key (num times entered)
-
-# Each line 
-# ++ Count syllable 
-# ++ Ryhme end of line (Ryhme anyalsis)
-# ++ Generate a stansa 
-
 print() 
-
-#print(syllable_count('fire')) 
-
-# Add meaning 
-# ++ sentiment anylisis 
-# ++ Tie in a dictionary to decide parts of speach 
-# ++ Anyalse for similar patterns within each song (noun, noun, adj, verb)
