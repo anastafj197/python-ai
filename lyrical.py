@@ -97,7 +97,10 @@ text = file.read().lower()
 file.close()
 # replaces anything that is not a lowercase letter, a space, or an apostrophe with a space:
 text = re.sub('[^a-z\ \']+', " ", text)
+# Split the song by words, remove repeats, convert back to a list 
 unique_words = list(text.split())
+unique_words = set(unique_words)
+unique_words = list(unique_words)
 
 print()
 print('* length of the list of all the words in the song *')
@@ -115,8 +118,8 @@ print()
 
 # Takes 1 random number between 1 and the song_len
 for x in range(1):
-	rand = random.randint(1, song_len)
-	rand2 = random.randint(1, song_len)
+	rand = random.randint(1, song_len - 1)
+	rand2 = random.randint(1, song_len - 1)
 
 print('* random position is number', rand, 'in the list *')
 
@@ -165,8 +168,22 @@ print("* Printing words that ryhme with", first_ryhme, "*")
 print()
 ryhme_list = pronouncing.rhymes(first_ryhme)
 print(ryhme_list)
+
+# Picking a random position in ryhme_list
+# Which will ryhme with first_ryhme
+ryhme_list_len = len(ryhme_list)
+
+for x in range(1):
+	rand_ryhme = random.randint(1, ryhme_list_len - 1)
+
+first_ryhmer = ryhme_list[rand_ryhme] 
 print()
-print("* Generating Synonyms *")
+print("* Selected ryhmer *")
+print()
+print(first_ryhmer)
+
+print()
+print("* Generating words synonymous to", first_ryhme, "*")
 print()
 print()
 
