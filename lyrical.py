@@ -123,13 +123,13 @@ for x in range(1):
 
 print('* random position is number', rand, 'in the list *')
 
-first_ryhme = unique_words[rand]
-second_ryhme = unique_words[rand2]  
+first_rhyme = unique_words[rand]
+second_rhyme = unique_words[rand2]  
 
 print()
-print(first_ryhme, "is the first ryhme")
+print(first_rhyme, "is the first rhyme")
 print()
-print(second_ryhme, "is the second ryhme")
+print(second_rhyme, "is the second rhyme")
 print()
 print()
 # Gives each line as the song is written 
@@ -163,42 +163,43 @@ print(blob.tags)
 print()
 print()
 
-# pronouncing.rhymes(first_ryhme) returns a list of words that ryhme with first_ryhme
-print("* Printing words that ryhme with", first_ryhme, "*")
+# pronouncing.rhymes(first_rhyme) returns a list of words that rhyme with first_rhyme
+print("* Printing words that rhyme with", first_rhyme, "*")
 print()
-ryhme_list_1 = pronouncing.rhymes(first_ryhme)
-print(ryhme_list_1)
+rhyme_list_1 = pronouncing.rhymes(first_rhyme)
+print(rhyme_list_1)
 print()
 print()
-print("* Printing words that ryhme with", second_ryhme, "*")
+print("* Printing words that rhyme with", second_rhyme, "*")
 print()
-ryhme_list_2 = pronouncing.rhymes(second_ryhme)
-print(ryhme_list_2)
+rhyme_list_2 = pronouncing.rhymes(second_rhyme)
+print(rhyme_list_2)
 
-# Picking a random position in ryhme_list
-# Which will ryhme with first_ryhme
-ryhme_list_len_1 = len(ryhme_list_1)
-ryhme_list_len_2 = len(ryhme_list_2)
+# Picking a random position in rhyme_list
+# Which will rhyme with first_rhyme
+rhyme_list_len_1 = len(rhyme_list_1)
+rhyme_list_len_2 = len(rhyme_list_2)
 
 for x in range(1):
-	rand_ryhme_1 = random.randint(1, ryhme_list_len_1 - 1)
-	rand_ryhme_2 = random.randint(1, ryhme_list_len_2 - 1)
+	rand_rhyme_1 = random.randint(1, rhyme_list_len_1 - 1)
+	rand_rhyme_2 = random.randint(1, rhyme_list_len_2 - 1)
 
-first_ryhmer = ryhme_list_1[rand_ryhme_1] 
-second_ryhmer = ryhme_list_2[rand_ryhme_2]
+first_rhymer = rhyme_list_1[rand_rhyme_1] 
+second_rhymer = rhyme_list_2[rand_rhyme_2]
 
 print()
-print("* Selected ryhmers *")
+print("* Selected rhymers *")
 print()
-print("1", first_ryhmer)
-print("2", second_ryhmer)
+print("1", first_rhymer)
+print("2", second_rhymer)
 print()
-print("* Generating words synonymous to", first_ryhme, "*")
+print("* Generating words synonymous to", first_rhyme, "*")
 print()
 print()
 
-synonym_list = dictionary.synonym(first_ryhme) 
+synonym_list = dictionary.synonym(first_rhyme) 
 
 print(synonym_list)
 print()
 print() 
+
