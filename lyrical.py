@@ -1,5 +1,5 @@
 # Frank Anastasia 
-# We're about to get cooking
+# Cooking with Markov
 
 import re 
 import sys
