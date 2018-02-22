@@ -2,6 +2,7 @@
 # We're about to get cooking
 
 import re 
+import sys
 import random 
 import urllib3
 import webbrowser 
@@ -203,3 +204,20 @@ print(synonym_list)
 print()
 print() 
 
+print("* Generating words synonymous to", second_rhyme, "*")
+print()
+print()
+
+synonym_list_2 = dictionary.synonym(second_rhyme) 
+
+print(synonym_list_2)
+print()
+print() 
+
+
+# To Do 
+# Seperate functions into methods
+# Begin the Markov Chain 
+
+# Bugs 
+# Index out of range when it cant find rhymes (Error check)
