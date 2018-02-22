@@ -73,6 +73,30 @@ def syllable_count(word):
 def gibberish_stanza(word, word2):
 	return 0
 
+# Takes in a text file, converts to lowercase, replaces punctuation
+# splits into words, removes repeats, converts back to a list 
+# Returns: a list of unique words from a text file 
+def make_unique_list(text):
+	return 0
+
+# From the unique list of words randomly selects two words to be the 
+# end of line rhymes 
+# Returns 2 words  
+def choose_rhymes(word, word2):
+	return 0
+
+# Takes in a chosen word, creates a list of words that rhyme with parameter 
+# Returns a word randomly from the rhyme list 
+def do_rhyme(word):
+	return 0
+
+# Takes in a word 
+# Returns a list of words synonomous to the parameter 
+def synonymize(word):
+	return 0
+
+
+
 # This prints the name with the url 
 # Along with all the rest of the li in the <ul> 
 print(titles)
