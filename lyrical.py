@@ -46,13 +46,34 @@ page_soup = soup(page_html, "lxml")
 titles = page_soup.find('ul')
 titles_text = titles.text
 
+def read_file(filename):
+	with open(filename, "r") as file:
+		contents = file.read().replace('\n\n',' ')
+	return contents
+
+# key: a single word
+# value: a list of all subsequent words 
+# Iterate throught the list pushing values for each word key
+# Since we are working with word pairs start at second word
+# and use the entry at index - 1 as the key  
+def build_chain(text, chain = {}):
+	words = text.split(' ')
+	index = 1 
+	for word in words[index:]:
+		key = words[index - 1]
+		if key in chain:
+			chain[key].append(word)
+		else:
+			chain[key] = [word]
+		index += 1
+
 # Start of the syllable counter
-print("* syllable counter *")
 
 # syllable_count uses vowels to determine syllables 
 # Parameters: Accepts a word or words 
 # Returns: A count of all the syllables 
 def syllable_count(word):
+	print("* syllable counter *")
 	word = word.lower()
 	count = 0 
 	vowels = "ayeiou"
@@ -66,12 +87,6 @@ def syllable_count(word):
 	if count == 0:
 		count += 1 
 	return count 
-
-# gibberish_stanza follows a basic POS pattern and attempts to replicate 
-# Parameters: Accepts 2 random words to serve as end of line rhymes 
-# Returns: A four line stanza of gibberish 
-def gibberish_stanza(word, word2):
-	return 0
 
 # Takes in a text file, converts to lowercase, replaces punctuation
 # splits into words, removes repeats, converts back to a list 
@@ -95,6 +110,11 @@ def do_rhyme(word):
 def synonymize(word):
 	return 0
 
+# gibberish_stanza follows a basic POS pattern and attempts to replicate 
+# Parameters: Accepts 2 random words to serve as end of line rhymes 
+# Returns: A four line stanza of gibberish 
+def gibberish_stanza(word, word2):
+	return 0
 
 
 # This prints the name with the url 
