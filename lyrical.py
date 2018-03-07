@@ -56,6 +56,7 @@ def read_file(filename):
 # Iterate throught the list pushing values for each word key
 # Since we are working with word pairs start at second word
 # and use the entry at index - 1 as the key  
+# Returns a Markov Chain Dictionary 
 def build_chain(text, chain = {}):
 	words = text.split(' ')
 	index = 1 
@@ -67,8 +68,21 @@ def build_chain(text, chain = {}):
 			chain[key] = [word]
 		index += 1
 
-# Start of the syllable counter
+# Set desired length, assign starting word
+# Walk through the chain till we reach word count 
+# Returns: A random message 
+def generate_message(chain, count = 100):
+	word1 = random.choice(list(chain.keys()))
+	messae = word1.capitalize()
 
+	while len(message.split(' ')) < count:
+		word2 = random.choice(chain[word1])
+		word1 = word2
+		message += ' ' + word2
+
+	return message 
+
+# Start of the syllable counter
 # syllable_count uses vowels to determine syllables 
 # Parameters: Accepts a word or words 
 # Returns: A count of all the syllables 
@@ -116,6 +130,11 @@ def synonymize(word):
 def gibberish_stanza(word, word2):
 	return 0
 
+def run_markov():
+	message = read_file('Fire_On_The_Mountain.txt')
+	chain = build_chain(message)
+	message = generate_message(chain)
+	print(message)
 
 # This prints the name with the url 
 # Along with all the rest of the li in the <ul> 
