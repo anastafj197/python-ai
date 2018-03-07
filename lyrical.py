@@ -68,10 +68,12 @@ def build_chain(text, chain = {}):
 			chain[key] = [word]
 		index += 1
 
+	return chain 
+
 # Set desired length, assign starting word
 # Walk through the chain till we reach word count 
 # Returns: A random message 
-def generate_message(chain, count = 100):
+def generate_message(chain, count):
 	word1 = random.choice(list(chain.keys()))
 	message = word1.capitalize()
 
@@ -81,6 +83,14 @@ def generate_message(chain, count = 100):
 		message += ' ' + word2
 
 	return message 
+
+def run_markov():
+	print("Generating Chain")
+	print()
+	message = read_file('Dead_Combo.txt')
+	chain = build_chain(message)
+	message = generate_message(chain, 202)
+	print(message)
 
 # Start of the syllable counter
 # syllable_count uses vowels to determine syllables 
@@ -251,12 +261,19 @@ def pos_tagging():
 
 	print("* Parts of speech Tagging *")
 	print()
-
+	tags = []
 	# blob.tags is used to find the POS a word is within a line 
 	for word, pos in blob.tags:
-	    print(word, pos) 
+	    print(word, pos)
+	    tags.append(pos)
 
+	print()
+	print(tags)
+	print()
 	return 0
+
+# Compare POS tags 
+# Grab a line, count words, generate chain length of the count 
 
 def run():
 	unique_words = make_unique_list()
@@ -264,18 +281,13 @@ def run():
 	do_rhymes(first_rhyme, second_rhyme)
 	synonymize(first_rhyme, second_rhyme)
 	pos_tagging()
+	run_markov()
 
 # gibberish_stanza follows a basic POS pattern and attempts to replicate 
 # Parameters: Accepts 2 random words to serve as end of line rhymes 
 # Returns: A four line stanza of gibberish 
 def gibberish_stanza(word, word2):
 	return 0
-
-def run_markov():
-	message = read_file('Fire_On_The_Mountain.txt')
-	chain = build_chain(message)
-	message = generate_message(chain)
-	print(message)
 
 # This prints the name with the url 
 # Along with all the rest of the li in the <ul> 
