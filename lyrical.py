@@ -87,7 +87,6 @@ def generate_message(chain, count = 100):
 # Parameters: Accepts a word or words 
 # Returns: A count of all the syllables 
 def syllable_count(word):
-	print("* syllable counter *")
 	word = word.lower()
 	count = 0 
 	vowels = "ayeiou"
@@ -105,24 +104,105 @@ def syllable_count(word):
 # Takes in a text file, converts to lowercase, replaces punctuation
 # splits into words, removes repeats, converts back to a list 
 # Returns: a list of unique words from a text file 
-def make_unique_list(text):
-	return 0
+def make_unique_list():
+	file = open('Fire_On_The_Mountain.txt', 'r')
+	# .lower() returns a version with all upper case characters replaced with lower case characters.
+	text = file.read().lower()
+	file.close()
+	# replaces anything that is not a lowercase letter, a space, or an apostrophe with a space:
+	text = re.sub('[^a-z\ \']+', " ", text)
+	# Split the song by words, remove repeats, convert back to a list 
+	unique_words = list(text.split())
+	unique_words = set(unique_words)
+	unique_words = list(unique_words)
+	print()
+	print(unique_words)
+	print()
+	return unique_words
 
 # From the unique list of words randomly selects two words to be the 
 # end of line rhymes 
 # Returns 2 words  
-def choose_rhymes(word, word2):
-	return 0
+def choose_rhymes(u_list):
+	print('* length of the list of all the words in the song *')
+	print()
+	song_len = len(u_list)
+	print(song_len)
+	print()
+	# Grab a random word from the unique set of Fire on the Mountain 
+	print('* Grabbing a random unique word from Fire on the Mountain *')
+	print() 
+	# Takes 1 random number between 1 and the song_len
+	for x in range(1):
+		rand = random.randint(1, song_len - 1)
+		rand2 = random.randint(1, song_len - 1)
+
+	print('* random position is number', rand, 'in the list *')
+
+	first_rhyme = u_list[rand]
+	second_rhyme = u_list[rand2]  
+
+	print()
+	print(first_rhyme, "is the first rhyme")
+	print()
+	print(second_rhyme, "is the second rhyme")
+	return (first_rhyme, second_rhyme)
 
 # Takes in a chosen word, creates a list of words that rhyme with parameter 
 # Returns a word randomly from the rhyme list 
-def do_rhyme(word):
-	return 0
+def do_rhymes(f_rhyme, s_rhyme):
+	# pronouncing.rhymes(first_rhyme) returns a list of words that rhyme with first_rhyme
+	print("* Printing words that rhyme with", f_rhyme, "*")
+	print()
+	rhyme_list_1 = pronouncing.rhymes(f_rhyme)
+	print(rhyme_list_1)
+	print()
+	print()
+	print("* Printing words that rhyme with", s_rhyme, "*")
+	print()
+	rhyme_list_2 = pronouncing.rhymes(s_rhyme)
+	print(rhyme_list_2)
+
+	# Picking a random position in rhyme_list
+	# Which will rhyme with first_rhyme
+	rhyme_list_len_1 = len(rhyme_list_1)
+	rhyme_list_len_2 = len(rhyme_list_2)
+
+	for x in range(1):
+		rand_rhyme_1 = random.randint(1, rhyme_list_len_1 - 1)
+		rand_rhyme_2 = random.randint(1, rhyme_list_len_2 - 1)
+
+	first_rhymer = rhyme_list_1[rand_rhyme_1] 
+	second_rhymer = rhyme_list_2[rand_rhyme_2]
+
+	print()
+	print("* Selected rhymers *")
+	print()
+	print("1", first_rhymer)
+	print("2", second_rhymer)
 
 # Takes in a word 
 # Returns a list of words synonomous to the parameter 
-def synonymize(word):
+def synonymize(f_rhyme, s_rhyme):
+	print("* Generating words synonymous to", f_rhyme, "*")
+	print()
+	print()
+	synonym_list = dictionary.synonym(f_rhyme) 
+	print(synonym_list)
+	print()
+	print() 
+	print("* Generating words synonymous to", s_rhyme, "*")
+	print()
+	print()
+	synonym_list_2 = dictionary.synonym(s_rhyme) 
+	print(synonym_list_2)
 	return 0
+
+def run():
+	unique_words = make_unique_list()
+	(first_rhyme, second_rhyme) = choose_rhymes(unique_words)
+	do_rhymes(first_rhyme, second_rhyme)
+	synonymize(first_rhyme, second_rhyme)
 
 # gibberish_stanza follows a basic POS pattern and attempts to replicate 
 # Parameters: Accepts 2 random words to serve as end of line rhymes 
@@ -155,47 +235,11 @@ with open('Fire_On_The_Mountain.txt','r') as f:
 
 print()
 
-file = open('Fire_On_The_Mountain.txt', 'r')
-# .lower() returns a version with all upper case characters replaced with lower case characters.
-text = file.read().lower()
-file.close()
-# replaces anything that is not a lowercase letter, a space, or an apostrophe with a space:
-text = re.sub('[^a-z\ \']+', " ", text)
-# Split the song by words, remove repeats, convert back to a list 
-unique_words = list(text.split())
-unique_words = set(unique_words)
-unique_words = list(unique_words)
-
-print()
-print('* length of the list of all the words in the song *')
-print()
-song_len = len(unique_words)
-print(song_len)
-print()
-print(unique_words)
-print()
-
 # Grab a random word from the unique set of Fire on the Mountain 
 print('* Grabbing a random unique word from Fire on the Mountain *')
 
 print() 
 
-# Takes 1 random number between 1 and the song_len
-for x in range(1):
-	rand = random.randint(1, song_len - 1)
-	rand2 = random.randint(1, song_len - 1)
-
-print('* random position is number', rand, 'in the list *')
-
-first_rhyme = unique_words[rand]
-second_rhyme = unique_words[rand2]  
-
-print()
-print(first_rhyme, "is the first rhyme")
-print()
-print(second_rhyme, "is the second rhyme")
-print()
-print()
 # Gives each line as the song is written 
 # To do **count syllables in each line and print**
 with open('Fire_On_The_Mountain.txt','r') as f:
@@ -209,6 +253,7 @@ f = open('Fire_On_The_Mountain.txt')
 lines = f.readlines()
 
 print()
+
 # specific line syl count 
 #print(lines[25])
 #count = syllable_count(lines[25])
@@ -227,57 +272,13 @@ print(blob.tags)
 print()
 print()
 
-# pronouncing.rhymes(first_rhyme) returns a list of words that rhyme with first_rhyme
-print("* Printing words that rhyme with", first_rhyme, "*")
-print()
-rhyme_list_1 = pronouncing.rhymes(first_rhyme)
-print(rhyme_list_1)
-print()
-print()
-print("* Printing words that rhyme with", second_rhyme, "*")
-print()
-rhyme_list_2 = pronouncing.rhymes(second_rhyme)
-print(rhyme_list_2)
-
-# Picking a random position in rhyme_list
-# Which will rhyme with first_rhyme
-rhyme_list_len_1 = len(rhyme_list_1)
-rhyme_list_len_2 = len(rhyme_list_2)
-
-for x in range(1):
-	rand_rhyme_1 = random.randint(1, rhyme_list_len_1 - 1)
-	rand_rhyme_2 = random.randint(1, rhyme_list_len_2 - 1)
-
-first_rhymer = rhyme_list_1[rand_rhyme_1] 
-second_rhymer = rhyme_list_2[rand_rhyme_2]
 
 print()
-print("* Selected rhymers *")
-print()
-print("1", first_rhymer)
-print("2", second_rhymer)
-print()
-print("* Generating words synonymous to", first_rhyme, "*")
-print()
-print()
 
-synonym_list = dictionary.synonym(first_rhyme) 
-
-print(synonym_list)
 print()
 print() 
 
-print("* Generating words synonymous to", second_rhyme, "*")
-print()
-print()
-
-synonym_list_2 = dictionary.synonym(second_rhyme) 
-
-print(synonym_list_2)
-print()
-print() 
-
-
+run()
 # To Do 
 # Seperate functions into methods
 # Begin the Markov Chain 
