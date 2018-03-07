@@ -73,7 +73,7 @@ def build_chain(text, chain = {}):
 # Returns: A random message 
 def generate_message(chain, count = 100):
 	word1 = random.choice(list(chain.keys()))
-	messae = word1.capitalize()
+	message = word1.capitalize()
 
 	while len(message.split(' ')) < count:
 		word2 = random.choice(chain[word1])
@@ -181,8 +181,8 @@ def do_rhymes(f_rhyme, s_rhyme):
 	print("1", first_rhymer)
 	print("2", second_rhymer)
 
-# Takes in a word 
-# Returns a list of words synonomous to the parameter 
+# Takes in 2 words 
+# Returns a list of words synonomous to each of the parameters 
 def synonymize(f_rhyme, s_rhyme):
 	print("* Generating words synonymous to", f_rhyme, "*")
 	print()
@@ -196,6 +196,66 @@ def synonymize(f_rhyme, s_rhyme):
 	print()
 	synonym_list_2 = dictionary.synonym(s_rhyme) 
 	print(synonym_list_2)
+	print()
+	return 0
+
+# Used to determine the parts of speach tags for a given 
+# piece of text - will be utilized in pattern matching
+def pos_tagging():
+	print("1. 	CC 	Coordinating conjunction")
+	print("2.	CD	Cardinal number")
+	print("3.	DT	Determiner")
+	print("4.  	EX	Existential there")
+	print("5.  	FW	Foreign word")
+	print("6.  	IN	Preposition or subordinating conjunction")
+	print("7.	JJ	Adjective")
+	print("8.	JJR	Adjective, comparative")
+	print("9.	JJS	Adjective, superlative")
+	print("10.	LS	List item marker")
+	print("11.	MD	Modal")
+	print("12.	NN	Noun, singular or mass")
+	print("13.	NNS	Noun, plural")
+	print("14.	NNP	Proper noun, singular")
+	print("15.	NNPS	Proper noun, plural")
+	print("16.	PDT	Predeterminer")
+	print("17.	POS	Possessive ending")
+	print("18.	PRP	Personal pronoun")
+	print("19.	PRP$	Possessive pronoun")
+	print("20.	RB	Adverb")
+	print("21.	RBR	Adverb, comparative")
+	print("22.	RBS	Adverb, superlative")
+	print("23.	RP	Particle")
+	print("24.	SYM	Symbol")
+	print("25.	TO	to")
+	print("26.	UH	Interjection")
+	print("27.	VB	Verb, base form")
+	print("28.	VBD	Verb, past tense")
+	print("29.	VBG	Verb, gerund or present participle")
+	print("30.	VBN	Verb, past participle")
+	print("31.	VBP	Verb, non-3rd person singular present")
+	print("32.	VBZ	Verb, 3rd person singular present")
+	print("33.	WDT	Wh-determiner")
+	print("34.	WP	Wh-pronoun")
+	print("35.	WP$	Possessive wh-pronoun")
+	print("36.	WRB	Wh-adverb")
+	print()
+
+	# grab a specific line in the file 
+	f = open('Fire_On_The_Mountain.txt')
+	lines = f.readlines()
+	print()
+
+	text = lines[12]
+	blob = TextBlob(text)
+	print()
+
+	print("* Parts of speech Tagging *")
+	print()
+
+	# blob.tags is used to find the POS a word is within a line 
+	for word, pos in blob.tags:
+	    print(word, pos) 
+
 	return 0
 
 def run():
@@ -203,6 +263,7 @@ def run():
 	(first_rhyme, second_rhyme) = choose_rhymes(unique_words)
 	do_rhymes(first_rhyme, second_rhyme)
 	synonymize(first_rhyme, second_rhyme)
+	pos_tagging()
 
 # gibberish_stanza follows a basic POS pattern and attempts to replicate 
 # Parameters: Accepts 2 random words to serve as end of line rhymes 
@@ -248,33 +309,9 @@ with open('Fire_On_The_Mountain.txt','r') as f:
     	print(line, count)
     	# print(line)
 
-# grab a specific line in the file 
-f = open('Fire_On_The_Mountain.txt')
-lines = f.readlines()
-
-print()
-
-# specific line syl count 
-#print(lines[25])
-#count = syllable_count(lines[25])
-#print(count)
-
-text = lines[12]
-blob = TextBlob(text)
-
-print()
-print("* Parts of speech Tagging *")
-print()
-
-# blob.tags is used to find the POS a word is within a line 
-print(blob.tags) 
-
 print()
 print()
-
-
 print()
-
 print()
 print() 
 
