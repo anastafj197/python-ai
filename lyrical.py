@@ -49,6 +49,8 @@ titles_text = titles.text
 def read_file(filename):
 	with open(filename, "r") as file:
 		contents = file.read().replace('\n\n',' ')
+		# this line removes newline bug but ruins the chain structure 
+		contents = contents.replace('\n', ' ')
 	return contents
 
 # key: a single word
@@ -288,6 +290,14 @@ def run():
 # Returns: A four line stanza of gibberish 
 def gibberish_stanza(word, word2):
 	return 0
+
+# Accepts a list: (sentance) in the form of the parts of speech that 
+# correspond to each word ex. [noun, adjetive, verb]
+# runs through a loop generating a random markov chain the same length 
+# as the parameter list, pulls the POS, checks if they are equal
+# if not try new chain, if so -> viable sentace in the desired structure 
+def find_pos_match(list):
+
 
 # This prints the name with the url 
 # Along with all the rest of the li in the <ul> 
