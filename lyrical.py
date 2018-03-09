@@ -297,7 +297,19 @@ def gibberish_stanza(word, word2):
 # as the parameter list, pulls the POS, checks if they are equal
 # if not try new chain, if so -> viable sentace in the desired structure 
 def find_pos_match(list):
+	chain_pos_list = []
+	message = read_file('Dead_Combo.txt')
+	chain = build_chain(message)
+	message = generate_message(chain, len(pos_list))
 
+	blob = TextBlob(message)
+
+	for word, pos in blob.tags:
+		chain_pos_list.append(pos)  
+
+	if pos_list == chain_pos_list: 
+		print("Viable sentace structure")
+		print(message)
 
 # This prints the name with the url 
 # Along with all the rest of the li in the <ul> 
