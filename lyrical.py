@@ -78,7 +78,7 @@ def build_chain(text, chain = {}):
 def generate_message(chain, count):
 	word1 = random.choice(list(chain.keys()))
 	message = word1.capitalize()
-
+	print("*************************************************** word1 = ", word1)
 	while len(message.split(' ')) < count:
 		word2 = random.choice(chain[word1])
 		word1 = word2
@@ -93,6 +93,7 @@ def run_markov():
 	chain = build_chain(message)
 	message = generate_message(chain, 202)
 	print(message)
+	print()
 
 # Start of the syllable counter
 # syllable_count uses vowels to determine syllables 
@@ -158,6 +159,7 @@ def choose_rhymes(u_list):
 	print(first_rhyme, "is the first rhyme")
 	print()
 	print(second_rhyme, "is the second rhyme")
+	print()
 	return (first_rhyme, second_rhyme)
 
 # Takes in a chosen word, creates a list of words that rhyme with parameter 
@@ -257,8 +259,10 @@ def pos_tagging():
 	lines = f.readlines()
 	print()
 
-	text = lines[12]
+	text = lines[7]
 	blob = TextBlob(text)
+	print()
+	print(text)
 	print()
 
 	print("* Parts of speech Tagging *")
@@ -272,7 +276,7 @@ def pos_tagging():
 	print()
 	print(tags)
 	print()
-	return 0
+	return tags 
 
 # Compare POS tags 
 # Grab a line, count words, generate chain length of the count 
@@ -282,8 +286,9 @@ def run():
 	(first_rhyme, second_rhyme) = choose_rhymes(unique_words)
 	do_rhymes(first_rhyme, second_rhyme)
 	synonymize(first_rhyme, second_rhyme)
-	pos_tagging()
+	tag = pos_tagging()
 	run_markov()
+	find_pos_match(tag)
 
 # gibberish_stanza follows a basic POS pattern and attempts to replicate 
 # Parameters: Accepts 2 random words to serve as end of line rhymes 
@@ -296,15 +301,18 @@ def gibberish_stanza(word, word2):
 # runs through a loop generating a random markov chain the same length 
 # as the parameter list, pulls the POS, checks if they are equal
 # if not try new chain, if so -> viable sentace in the desired structure 
-def find_pos_match(list):
+def find_pos_match(pos_list):
 	print("Searching for a parts of speech pattern match")
+	print()
 	chain_pos_list = []
 	message = read_file('Dead_Combo.txt')
 	chain = build_chain(message)
+	print(chain)
 	# loop until the parts of speech pattern match 
 	while chain_pos_list != pos_list:
+		print("Generating message 2nd time")
 		message = generate_message(chain, len(pos_list))
-
+		print(message)
 		blob = TextBlob(message)
 
 		for word, pos in blob.tags:
@@ -314,8 +322,9 @@ def find_pos_match(list):
 			print("Viable sentace structure")
 			print(message)
 		else:
+			print()
+			print("in else")
 			chain_pos_list = []
-
 
 # This prints the name with the url 
 # Along with all the rest of the li in the <ul> 
