@@ -100,7 +100,7 @@ def run_markov():
 # Parameters: Accepts a word or words 
 # Returns: A count of all the syllables 
 def syllable_count(word):
-	word = word.lower()
+	#word = word.lower()
 	count = 0 
 	vowels = "ayeiou"
 	if word in vowels:
@@ -259,7 +259,7 @@ def pos_tagging():
 	lines = f.readlines()
 	print()
 
-	text = lines[7]
+	text = lines[15]
 	blob = TextBlob(text)
 	print()
 	print(text)
@@ -278,9 +278,6 @@ def pos_tagging():
 	print()
 	return tags 
 
-# Compare POS tags 
-# Grab a line, count words, generate chain length of the count 
-
 def run():
 	unique_words = make_unique_list()
 	(first_rhyme, second_rhyme) = choose_rhymes(unique_words)
@@ -288,7 +285,9 @@ def run():
 	synonymize(first_rhyme, second_rhyme)
 	tag = pos_tagging()
 	run_markov()
-	find_pos_match(tag)
+	# find_syllable_match needs a random line as a parameter 
+	find_syllable_match(gen_rand_line())
+	#find_pos_match(tag)
 
 # gibberish_stanza follows a basic POS pattern and attempts to replicate 
 # Parameters: Accepts 2 random words to serve as end of line rhymes 
@@ -307,7 +306,8 @@ def find_pos_match(pos_list):
 	chain_pos_list = []
 	message = read_file('Dead_Combo.txt')
 	chain = build_chain(message)
-	print(chain)
+	# prints the entire data structure that the chain is derived from 
+	# print(chain)
 	# loop until the parts of speech pattern match 
 	while chain_pos_list != pos_list:
 		print("Generating message 2nd time")
@@ -325,6 +325,57 @@ def find_pos_match(pos_list):
 			print()
 			print("in else")
 			chain_pos_list = []
+
+# Accepts a list: ()
+# Basically runs the syllable counter to test if the example list 
+# and the newly generated list have a relativaly similar number of syllables 
+# absolute value of the number of syllables in given line - generated line  
+def find_syllable_match(ex_list):
+	print()
+	#print("Length of the example list is", len(ex_list.split()))
+	print()
+	chain_syllable_list = []
+	chain_syllable_string = str(chain_syllable_list)
+
+	ex_list_string = str(ex_list)
+
+	print("Searching for a chain with a similar number of syllables")
+	print()
+	print("# of syllables in example is", syllable_count(ex_list_string))
+	print()
+
+	message = read_file('Dead_Combo.txt')
+	chain = build_chain(message)
+	switch = True 
+	while switch:
+		if abs(syllable_count(ex_list_string) - syllable_count(chain_syllable_string) > 1):
+			print("In F_S_M if")
+			chain_syllable_string = generate_message(chain, len(ex_list.split()))
+			print("# of syllables in generated chain is", syllable_count(chain_syllable_string))
+			print()
+			print(chain_syllable_string)
+			print()
+		else:
+			print()
+			print("In F_M_S else")
+			switch = False
+			print("Found viable syllable match")
+			print(chain_syllable_string)
+
+def gen_rand_line():
+	with open('Dead_Combo.txt', 'r') as f:
+		text = f.read()
+		text = strip_blanks(text)
+		lines = text.splitlines()
+		rand_line = random.choice(lines)
+		print(rand_line)
+		return rand_line
+
+
+def strip_blanks(txt):
+	while '\n\n' in txt:
+		txt = txt.replace('\n\n', '\n')
+	return txt
 
 # This prints the name with the url 
 # Along with all the rest of the li in the <ul> 
