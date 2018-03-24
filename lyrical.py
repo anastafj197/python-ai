@@ -92,6 +92,7 @@ def run_markov():
 	message = read_file('Dead_Combo.txt')
 	chain = build_chain(message)
 	message = generate_message(chain, 202)
+	# Break up this chain into lines 
 	print(message)
 	print()
 
@@ -100,7 +101,7 @@ def run_markov():
 # Parameters: Accepts a word or words 
 # Returns: A count of all the syllables 
 def syllable_count(word):
-	#word = word.lower()
+	word = word.lower()
 	count = 0 
 	vowels = "ayeiou"
 	if word in vowels:
@@ -259,7 +260,7 @@ def pos_tagging():
 	lines = f.readlines()
 	print()
 
-	text = lines[15]
+	text = lines[23]
 	blob = TextBlob(text)
 	print()
 	print(text)
@@ -287,7 +288,7 @@ def run():
 	run_markov()
 	# find_syllable_match needs a random line as a parameter 
 	find_syllable_match(gen_rand_line())
-	#find_pos_match(tag)
+	# find_pos_match(tag)
 
 # gibberish_stanza follows a basic POS pattern and attempts to replicate 
 # Parameters: Accepts 2 random words to serve as end of line rhymes 
@@ -339,9 +340,9 @@ def find_syllable_match(ex_list):
 
 	ex_list_string = str(ex_list)
 
-	print("Searching for a chain with a similar number of syllables")
-	print()
 	print("# of syllables in example is", syllable_count(ex_list_string))
+	print()
+	print("Searching for a chain with a similar number of syllables")
 	print()
 
 	message = read_file('Dead_Combo.txt')
@@ -368,9 +369,10 @@ def gen_rand_line():
 		text = strip_blanks(text)
 		lines = text.splitlines()
 		rand_line = random.choice(lines)
+		print()
+		print("Random example line")
 		print(rand_line)
 		return rand_line
-
 
 def strip_blanks(txt):
 	while '\n\n' in txt:
@@ -379,41 +381,35 @@ def strip_blanks(txt):
 
 # This prints the name with the url 
 # Along with all the rest of the li in the <ul> 
-print(titles)
+# print(titles)
 
 print()
 
 # This only prints the names of all the songs
-print(titles_text) 
+# print(titles_text) 
 
 print()
 
 # Gives each word of a specific saved text file on a new line 
-with open('Fire_On_The_Mountain.txt','r') as f:
-    for line in f:
-        for word in line.split():
-           print(word) 
+# with open('Fire_On_The_Mountain.txt','r') as f:
+#    for line in f:
+#        for word in line.split():
+#           print(word) 
 
 print()
 
 # Grab a random word from the unique set of Fire on the Mountain 
-print('* Grabbing a random unique word from Fire on the Mountain *')
+# print('* Grabbing a random unique word from Fire on the Mountain *')
 
 print() 
 
 # Gives each line as the song is written 
 # To do **count syllables in each line and print**
-with open('Fire_On_The_Mountain.txt','r') as f:
-    for line in f:
-    	count = syllable_count(line)
-    	print(line, count)
+#with open('Fire_On_The_Mountain.txt','r') as f:
+#    for line in f:
+#    	count = syllable_count(line)
+#    	print(line, count)
     	# print(line)
-
-print()
-print()
-print()
-print()
-print() 
 
 run()
 # To Do 
