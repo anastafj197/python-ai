@@ -166,7 +166,8 @@ def test_dict():
 	blob = TextBlob(text)
  
 	for word, pos in blob.tags:
-		
+		if pos in pos_dict:
+			pos_dict[pos].append(word)
 
 def gen_new_chorus():
 	sample_pos = []
