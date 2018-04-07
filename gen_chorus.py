@@ -36,158 +36,84 @@ def find_duplicates(file):
 # Generates a common pattern by randomly pulling words from the arrays 
 # that match with the POS pattern from the chorus line identified above 
 # Special case for PRP$ and WP$ (Changed to PRPS & WPS)
-def split_by_pos():
-	CC, CD, DT, EX, FW, IN, JJ, JJR, JJS, LS, MD, NN, NNS, NNP, NNPS, PDT, POS, PRP, PRPS, RB, RBR, RBS, RP, SYM, TO, UH, VB, VBD, VBG, VBN, VBP, VBZ, WDT, WP, WPS, WRB = ([] for i in range(36))
-	
-	f = open("Franklin's_Tower.txt")
-	text = f.read()
-	blob = TextBlob(text)
-	# This is dirty needs redesign change structure to 2d array and loop through that 
-	for word, pos in blob.tags:
-		if pos == "CC":
-			CC.append(word)
-		elif pos == "CD":
-			CD.append(word)
-		elif pos == "DT":
-			DT.append(word)
-		elif pos == "EX":
-			EX.append(word)
-		elif pos == "FW":
-			FW.append(word)
-		elif pos == "IN":
-			IN.append(word)
-		elif pos == "JJ":
-			JJ.append(word)
-		elif pos == "JJR":
-			JJR.append(word)
-		elif pos == "JJS":
-			JJS.append(word)
-		elif pos == "LS":
-			LS.append(word)
-		elif pos == "MD":
-			MD.append(word)
-		elif pos == "NN":
-			NN.append(word)
-		elif pos == "NNS":
-			NNS.append(word)
-		elif pos == "NNP":
-			NNP.append(word)
-		elif pos == "NNPS":
-			NNPS.append(word)
-		elif pos == "PDT":
-			PDT.append(word)
-		elif pos == "POS":
-			POS.append(word)
-		elif pos == "PRP":
-			PRP.append(word)
-		elif pos == "PRPS":
-			PRPS.append(word)
-		elif pos == "PRB":
-			PRB.append(word)
-		elif pos == "RBR":
-			RBR.append(word)
-		elif pos == "RBS":
-			RBS.append(word)
-		elif pos == "RP":
-			RP.append(word)
-		elif pos == "SYM":
-			SYM.append(word)
-		elif pos == "TO":
-			TO.append(word)
-		elif pos == "UH":
-			UH.append(word)
-		elif pos == "VB":
-			VB.append(word)
-		elif pos == "VBD":
-			VBD.append(word)	
-		elif pos == "VBG":
-			VBG.append(word)
-		elif pos == "VBN":
-			VBN.append(word)
-		elif pos == "VBP":
-			VBP.append(word)
-		elif pos == "VBZ":
-			VBZ.append(word)
-		elif pos == "WDT":
-			WDT.append(word)
-		elif pos == "WP":
-			WP.append(word)
-		elif pos == "WPS":
-			WPS.append(word)
-		elif pos == "WRB":
-			WRB.append(word)
-
-
-	#print(VB)
-
-
 def test_dict():
 	pos_dict = {
-				"CC" : [],
-				"CD" : [],
-				"DT" : [],
-				"EX" : [],
-				"FW" : [],
-				"IN" : [],
-				"JJ" : [],
-				"JJR" : [],
-				"JJS" : [],
-				"LS" : [],
-				"MD" : [],
-				"NN" : [],
-				"NNS" : [],
-				"NNP" : [],
-				"NNPS" : [],
-				"PDT" : [],
-				"POS" : [],
-				"PRP" : [],
-				"PRPS" : [],
-				"RB" : [],
-				"RBR" : [],
-				"RBS" : [],
-				"RP" : [],
-				"SYM" : [],
-				"TO" : [],
-				"UH" : [],
-				"VB" : [],
-				"VBD" : [],
-				"VBG" : [],
-				"VBN" : [],
-				"VBP" : [],
-				"VBZ" : [],
-				"WDT" : [],
-				"WP" : [],
-				"WPS" : [],
-				"WRB" : []
+		"CC" : set(),
+		"CD" : set(),
+		"DT" : set(),
+		"EX" : set(),
+		"FW" : set(),
+		"IN" : set(),
+		"JJ" : set(),
+		"JJR" : set(),
+		"JJS" : set(),
+		"LS" : set(),
+		"MD" : set(),
+		"NN" : set(),
+		"NNS" : set(),
+		"NNP" : set(),
+		"NNPS" : set(),
+		"PDT" : set(),
+		"POS" : set(),
+		"PRP" : set(),
+		"PRPS" : set(),
+		"RB" : set(),
+		"RBR" : set(),
+		"RBS" : set(),
+		"RP" : set(),
+		"SYM" : set(),
+		"TO" : set(),
+		"UH" : set(),
+		"VB" : set(),
+		"VBD" : set(),
+		"VBG" : set(),
+		"VBN" : set(),
+		"VBP" : set(),
+		"VBZ" : set(),
+		"WDT" : set(),
+		"WP" : set(),
+		"WPS" : set(),
+		"WRB" : set()
 	}
 
-	f = open("Franklin's_Tower.txt")
-	text = f.read()
+	f = open("Fire_On_The_Mountain.txt")
+	# can remove the .lower if needed 
+	text = f.read()#.lower()
 	blob = TextBlob(text)
  
 	for word, pos in blob.tags:
 		if pos in pos_dict:
-			pos_dict[pos].append(word)
+			pos_dict[pos].add(word)
 
-def gen_new_chorus():
+	print(pos_dict)
+	return pos_dict
+
+def gen_new_chorus(pos_dict):
 	sample_pos = []
 	gen_chorus_line = []
-	sample_chorus_line = find_duplicates("Franklin's_Tower.txt")
+	sample_chorus_line = find_duplicates("Fire_On_The_Mountain.txt")
 	blob = TextBlob(sample_chorus_line)
 
 	for word, pos in blob.tags:
 		sample_pos.append(pos)
 
+	print()
 	print(sample_pos)
 
 	# pick a random word from the array named sample_pos[i]
 	for i in range(len(sample_pos)):
-		print(random.choice(sample_pos[i]))
-		gen_chorus_line.append(random.choice(sample_pos[i]))
+		#print(len(sample_pos))
+		print(sample_pos[i])
+		print(pos_dict[sample_pos[i]])
+		print(random.sample(pos_dict[sample_pos[i]], 1))
 
+		gen_chorus_line.append(random.sample(pos_dict[sample_pos[i]], 1))
+
+	print()
 	print(gen_chorus_line)
 
 
-find_duplicates("Franklin's_Tower.txt")
-split_by_pos()
-gen_new_chorus()
+find_duplicates("Fire_On_The_Mountain.txt")
+#split_by_pos()
+pos_dict = test_dict()
+gen_new_chorus(pos_dict)
