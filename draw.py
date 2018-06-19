@@ -1,7 +1,9 @@
 # Basic Gui using tkinter
 # First attempts at a color shifting display
 
+import time
 from tkinter import *
+from itertools import cycle
 
 root = Tk()
 
@@ -25,13 +27,29 @@ box = canvas.create_rectangle(50, 35, 150, 85)
 # command to change box color 
 canvas.itemconfig(box, fill="green")
 
-def box_color_shift():
-	color_list = ["red, orange", "yellow", "green", "blue", "purple"]
-	for color in color_list:
+color_list = ["red", "orange", "yellow", "green", "blue", "purple"]
+color_gen = cycle(color_list)
+
+count = 0
+
+#for color in color_list:
+#	canvas.itemconfig(box, fill = color_list[count])
+#	canvas.pack()
+#	print(count)
+#	count += 1
+#	time.sleep(1)
+
+	
+root.mainloop()
+
+
+#def box_color_shift():
 
 
 
 #canvas.delete(redLine)
 #canvas.delete(ALL)
 
-root.mainloop()
+
+
+#box_color_shift()
