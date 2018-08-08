@@ -8,7 +8,7 @@ import turtle
 loadWindow = turtle.Screen()
 
 # turn off draw mode
-# turtle.tracer(0, 0)
+turtle.tracer(0, 0)
 
 boy0 = turtle.Pen()
 boy0.color("red")
@@ -57,16 +57,66 @@ def small():
 		boy4.forward(50)
 		boy4.right(49)
 
+def move_all_f(distance):
+	boy0.forward(distance)
+	boy1.forward(distance)
+	boy2.forward(distance)
+	boy3.forward(distance)
+	boy4.forward(distance)
+
+def move_all_b(distance):
+	boy0.backward(distance)
+	boy1.backward(distance)
+	boy2.backward(distance)
+	boy3.backward(distance)
+	boy4.backward(distance)
+
+def move_all_r(distance):
+	boy0.right(distance)
+	boy1.right(distance)
+	boy2.right(distance)
+	boy3.right(distance)
+	boy4.right(distance)
+
+def move_all_l(distance):
+	boy0.left(distance)
+	boy1.left(distance)
+	boy2.left(distance)
+	boy3.left(distance)
+	boy4.left(distance)
+
 big()
 small()
 
-boy0.forward(200)
-boy1.forward(200)
-boy2.forward(200)
-boy3.forward(200)
-boy4.forward(200)
+move_all_l(60)
+move_all_f(200)
 
 small()
+
+move_all_r(100)
+
+boy4.left(60)
+
+boy3.forward(20)
+
+boy2.forward(30)
+
+
+
+move_all_f(500)
+small()
+
+def s_unit_loop(times):
+	for i in range(times): 
+		move_all_f(100)
+		small()
+
+s_unit_loop(25)
+
+move_all_l(90)
+boy1.left(60)
+boy2.left(90)
+boy2.forward(100)
 
 
 # turtle.update()
